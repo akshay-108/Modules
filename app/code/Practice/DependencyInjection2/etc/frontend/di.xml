@@ -1,0 +1,4 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLScheme-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<preference for="Magento\Catalog\Api\ProductRepositoryInterface" 
+            type="Practice\DependencyInjection2\Model\CustomImplementation" />
+</config>

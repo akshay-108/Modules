@@ -1,0 +1,4 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLScheme-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<!-- <preference for="Practice\DependencyInjection1\Api\DependencyInterface\PencileInterface" type="Practice\DependencyInjection1\Api\PencilClass\YellowPencil" /> -->
+<preference for="Practice\DependencyInjection1\Api\DependencyInterface\PencileInterface" type="Practice\DependencyInjection1\Api\PencilClass\RedPencil" />
+</config>
