@@ -1,0 +1,85 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+?>
+<div class="toolbar-sorter sorter" id="default_sortby">
+    <!--<label class="sorter-label" for="sorter"><?= $block->escapeHtml(__('Sort By')) ?></label>-->
+    <div class="select">
+        <div class="select-styled active"><?= $block->escapeHtml(__('SORT BY')) ?></div>
+            <ul id="select_sort_id" class="select-options" style="display: none;">
+            <?php foreach ($block->getAvailableOrders() as $_key => $_order) :?>
+                <li rel="<?= $block->escapeHtmlAttr($_key) ?>"
+                <?php if ($block->isOrderCurrent($_key)) :?>
+                    selected="selected"
+                <?php endif; ?>
+                id="<?= $block->escapeHtmlAttr($_key) ?>">
+                    <?= $block->escapeHtml(__($_order)) ?>
+                </li>
+                <input type="hidden" id="selected_sortby_val" value="<?= $block->escapeHtmlAttr($_key) ?>">
+            <?php endforeach; ?>
+            </ul>
+    </div>
+</div>
+<script>
+require([
+'jquery'
+], function($) {
+     "use strict";
+    $(document).ready(function(){
+        var selectOpitonVal = $("#selected_sortby_val").val();
+        $(document).on("click", "ul.select-options li", function(e) { 
+            //alert(this.id);
+            var url= window.location.href;
+            //url = url.split('?')[0];
+            //alert(url);
+            var separator = (window.location.href.indexOf("?")===-1)?"?":"&";
+            //url = window.location.href + separator + "product_list_order=low_to_high";
+            //alert(url);
+            if(this.id == "low_to_high"){
+               var newUrl=removeURLParameter(url, "product_list_order");
+               window.location.href = newUrl + separator + "product_list_order=low_to_high";
+            }
+            else if(this.id == "high_to_low"){
+                var newUrl=removeURLParameter(url, "product_list_order");
+                window.location.href = newUrl + separator + "product_list_order=high_to_low";
+            }
+            else{
+                var newUrl=removeURLParameter(url, "product_list_order");
+                window.location.href = newUrl + separator + "product_list_order=created_at";
+            }
+        });
+
+        function removeURLParameter(url, parameter) {
+    //prefer to use l.search if you have a location/link object
+    var urlparts= url.split('?');   
+    if (urlparts.length>=2) {
+
+        var prefix= encodeURIComponent(parameter)+'=';
+        var pars= urlparts[1].split(/[&;]/g);
+
+        //reverse iteration as may be destructive
+        for (var i= pars.length; i-- > 0;) {    
+            //idiom for string.startsWith
+            if (pars[i].lastIndexOf(prefix, 0) !== -1) {  
+                pars.splice(i, 1);
+            }
+        }
+
+        url= urlparts[0]+'?'+pars.join('&');
+        return url;
+    } else {
+        return url;
+    }
+}
+    });
+});
+</script>
