@@ -2,6 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Mageplaza_AdminMenu1::adminmenu" title="Test Menu" module="Mageplaza_AdminMenu1" sortOrder="51" resource="Mageplaza_AdminMenu1::adminmenu"/>
+        <add id="Mageplaza_AdminMenu1::posts" title="Posts" module="Mageplaza_AdminMenu1" sortOrder="10" action="mageplaza_admingrid/post/index" resource="Mageplaza_AdminMenu1::posts" parent="Mageplaza_AdminMenu1::adminmenu"/>
         <add id="Mageplaza_AdminMenu1::menu_configuration" title="Configuration" module="Mageplaza_AdminMenu1" sortOrder="99" parent="Mageplaza_AdminMenu1::adminmenu" action="adminhtml/system_config/edit/section/AdminMenu" resource="Mageplaza_AdminMenu1::adminmenu_configuration"/>
     </menu>
 </config>
