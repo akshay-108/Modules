@@ -7,6 +7,7 @@ class ExamplePlugin
 
 	public function beforeSetTitle(\Mageplaza\PluginExample4\Controller\Index\Example $subject, $title)
 	{
+		echo "Hello 1"."\n";
 		$title = $title . " to ";
 		echo __METHOD__ . "</br>";
 
@@ -16,6 +17,7 @@ class ExamplePlugin
 
 	public function afterGetTitle(\Mageplaza\PluginExample4\Controller\Index\Example $subject, $result)
 	{
+		echo "Hello 5"."\n";
 
 		echo __METHOD__ . "</br>";
 
@@ -26,12 +28,12 @@ class ExamplePlugin
 
 	public function aroundGetTitle(\Mageplaza\PluginExample4\Controller\Index\Example $subject, callable $proceed)
 	{
+		echo "Hello 3"."\n";
 
 		echo __METHOD__ . " - Before proceed() </br>";
-		 $result = $proceed();
+		$result = $proceed();
 		echo __METHOD__ . " - After proceed() </br>";
-
-
+		
 		return $result;
 	}
 

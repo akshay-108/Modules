@@ -14,11 +14,13 @@ class Example extends \Magento\Framework\App\Action\Action
 
 	public function setTitle($title)
 	{
+		echo "Hello 2"."\n";
 		return $this->title = $title;
 	}
 
 	public function getTitle()
 	{
+		echo "Hello 4"."\n";
 		return $this->title;
 	}
 }
