@@ -46,8 +46,10 @@ class Create extends \Magento\Customer\Controller\AbstractAccount
      */
     public function execute()
     {
+        // after login type after base url /customer/account/create
         // echo "<h1>Hello</h1>";
         if ($this->session->isLoggedIn() || !$this->registration->isAllowed()) {
+            // error_log(print_r("Hello", 1)."\n",3,BP.'/var/log/order-queue.log');
             /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
             $resultRedirect = $this->resultRedirectFactory->create();
             $resultRedirect->setPath('*/*');
