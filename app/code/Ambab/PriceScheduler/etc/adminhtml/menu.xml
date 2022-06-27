@@ -2,6 +2,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Ambab_PriceScheduler::sheduleMenu" title="Price Scheduler" module="Ambab_PriceScheduler" sortOrder="51" resource="Ambab_PriceScheduler::sheduleMenu"/>
-        <add id="Ambab_PriceScheduler::schedule" title="Scheduler" module="Ambab_PriceScheduler" sortOrder="10" action="ambab_pricescheduler/scheduler/index" resource="Ambab_PriceScheduler::schedule" parent="Ambab_PriceScheduler::sheduleMenu"/>
+        <add id="Ambab_PriceScheduler::schedule" title="Scheduler" module="Ambab_PriceScheduler" sortOrder="10" action="grid/grid/index" resource="Ambab_PriceScheduler::schedule" parent="Ambab_PriceScheduler::sheduleMenu"/>
     </menu>
 </config>

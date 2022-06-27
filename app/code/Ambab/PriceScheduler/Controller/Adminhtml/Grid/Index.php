@@ -1,6 +1,6 @@
 <?php
 
-namespace Ambab\PriceScheduler\Controller\Adminhtml\Scheduler;
+namespace Ambab\PriceScheduler\Controller\Adminhtml\Grid;
 
 
 class Index extends \Magento\Backend\App\Action
