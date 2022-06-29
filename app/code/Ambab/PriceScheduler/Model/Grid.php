@@ -63,7 +63,7 @@ class Grid extends \Magento\Framework\Model\AbstractModel implements GridInterfa
      */
     public function setStartTime($start_time)
     {
-        return $this->setData(self::StartTime, $Bank_Name);
+        return $this->setData(self::StartTime, $start_time);
     }
 
     /**
@@ -120,5 +120,6 @@ class Grid extends \Magento\Framework\Model\AbstractModel implements GridInterfa
         return $this->setData(self::IsDisabled, $is_disabled);
     }
 
+    
     
 }

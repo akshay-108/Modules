@@ -1,6 +1,7 @@
 <?php
 namespace Ambab\PriceScheduler\Controller\Adminhtml\Grid;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Ambab\PriceScheduler\Helper\Data;
 
 class Save extends \Magento\Backend\App\Action
 {
@@ -20,7 +21,8 @@ class Save extends \Magento\Backend\App\Action
         \Magento\Framework\File\Csv $csv,
         \Magento\Framework\Filesystem $filesystem,
         \Magento\MediaStorage\Model\File\UploaderFactory $_uploaderFactory,
-        \Magento\Framework\Message\ManagerInterface $messageManager
+        \Magento\Framework\Message\ManagerInterface $messageManager,
+        Data $helper
     ) {
         parent::__construct($context);
         $this->file = $file;
@@ -29,6 +31,7 @@ class Save extends \Magento\Backend\App\Action
         $this->_varDirectory = $filesystem->getDirectoryWrite(DirectoryList::VAR_DIR);
         $this->gridFactory = $gridFactory;
         $this->messageManager = $messageManager;
+        $this->helper = $helper;
     }
 
     /**
@@ -44,8 +47,8 @@ class Save extends \Magento\Backend\App\Action
         $workingDir = $this->_varDirectory->getAbsolutePath('importexport/');
         $result = $uploader->save($workingDir);
         $path = $result['path'] . $result['file'];
-        $json = $this->csv->getData($path);
-
+        // $json = $this->csv->getData($path);
+        
         if (!$data && $uploader->getFileExtension($path) == 'csv') {
             $this->_redirect('grid/grid/addrow');
             return;
@@ -54,7 +57,7 @@ class Save extends \Magento\Backend\App\Action
         {
             try {
                 $rowData = $this->gridFactory->create();
-                $data['product_data'] = json_encode($json);
+                $data['product_data'] = $this->helper->csvToJson($path);
                 $rowData->setData($data);
                 if (isset($data['id'])) {
                     $rowData->setEntityId($data['id']);

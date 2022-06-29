@@ -11,10 +11,7 @@ use Ambab\PriceScheduler\Helper\Data;
 
 class Import extends Command
 {    
-    /**
-     * @var Ambab\PriceScheduler\Model\ProductUploader
-     */
-    protected $productupload;
+   
     public function __construct(Data $helper)
     {
         $this->helper = $helper;
