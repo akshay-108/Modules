@@ -2,6 +2,7 @@
                  xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="product_price_scheduler">
         <column xsi:type="int" name="id" padding="11" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="50" comment="name"/>
         <column xsi:type="timestamp" name="start_time" unsigned="true" nullable="false" comment="Start Time"/>
         <column xsi:type="json" name="product_data" nullable="false" comment="Product Data"/>
         <column xsi:type="tinyint" name="is_applied" unsigned="true" identity="false" nullable="false" comment="Is Applied"/>

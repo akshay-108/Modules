@@ -62,7 +62,18 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 ['legend' => __('Add Schedule'), 'class' => 'fieldset-wide']
             );
         }
-
+        $fieldset->addField(
+            'name',
+            'text',
+            [
+                'name' => 'name',
+                'label' => __('Title'),
+                'id' => 'name',
+                'title' => __('Title'),
+                'class' => 'required-entry',
+                'required' => true,
+            ]
+        );
         $fieldset->addField(
             'start_time',
             'date',
@@ -85,30 +96,10 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'label' => __('Product Data'),
                 'id' => 'product_data',
                 'title' => __('Product Data'),
+                'note' => 'Allow File type: .csv',
                 'required' => true,
             ]
         );
-        // $importdata_script->setAfterElementHtml(
-        //     "<script type=\"text/javascript\">
-
-        //     document.getElementById('[route_name]_importdata').onchange = function () { 
-
-        //         var fileInput = document.getElementById('[route_name]_importdata');
-
-        //         var filePath = fileInput.value;
-
-        //         var allowedExtensions = /(\.csv|\.xls)$/i; 
-
-        //         if(!allowedExtensions.exec(filePath))
-        //         {
-        //             alert('Please upload file having extensions .csv or .xls only.');
-        //             fileInput.value = '';
-        //         }
-
-        //     };
-
-        //     </script>"
-        // );
 
         $fieldset->addField(
             'is_applied',
