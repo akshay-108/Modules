@@ -15,7 +15,7 @@ class Data
     }
     public function Uploader()
     {
-        $this->productupload->ProductUploader();
+        $this->productupload->ProductLoader();
     }
 
     public function csvToJson($fname) {
@@ -38,6 +38,16 @@ class Data
         
         // encode array to json
         return json_encode($json);
+    }
+
+    public function convertDateToTimezone($dateTime, $timezone)
+    {   
+        $tz = new \DateTimeZone($timezone);
+
+        $date = new \DateTime($dateTime);
+        $date->setTimezone($tz);
+
+        return $date->format('Y-m-d H:i:s');
     }
 }
 ?>

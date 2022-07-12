@@ -41,6 +41,10 @@ class Save extends \Magento\Backend\App\Action
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
+       
+        // print_r($data['start_time']);die;
+        $data['start_time'] = $this->helper->convertDateToTimezone($data['start_time'], 'Asia/Kolkata');
+
         $files = $this->getRequest()->getFiles()->toArray();
         $csvInfoFile = $files['product_data'];
         $uploader = $this->_uploaderFactory->create(['fileId' => $csvInfoFile]);
@@ -58,14 +62,16 @@ class Save extends \Magento\Backend\App\Action
             try {
                 $rowData = $this->gridFactory->create();
                 $data['product_data'] = $this->helper->csvToJson($path);
+                // print_r($data['product_data']);
                 $rowData->setData($data);
                 if (isset($data['id'])) {
                     $rowData->setEntityId($data['id']);
                 }
+                // print_r($rowData);die;
                 $rowData->save();
                 $this->messageManager->addSuccess(__('Row data has been successfully saved.'));
             } catch (\Exception $e) {
-                $this->messageManager->addError(__($e->getMessage()));
+                echo $this->messageManager->addError(__($e->getMessage()));
             }
             $this->_redirect('grid/grid/index');
         }else{
